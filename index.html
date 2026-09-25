@@ -24,6 +24,7 @@
   --cyan-dim:#245e60;
   --red:#F0685A;
   --red-dim:#6e241d;
+  --purple-glow: 0 0 6px rgba(124,107,245,0.85), 0 0 18px rgba(124,107,245,0.55), 0 0 40px rgba(124,107,245,0.25);
   --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --disp:"Orbitron", sans-serif;
   color-scheme: dark;
@@ -87,7 +88,7 @@ nav{
 .brand .plate img{width:16px; height:16px; object-fit:contain; filter:grayscale(1) brightness(1.6);}
 .brand-name{font-size:13.5px; letter-spacing:0.04em; font-weight:600;}
 .brand-name .slash{color:var(--text-faint); margin:0 3px;}
-.brand-name b{color:var(--purple); font-weight:600;}
+.brand-name b{color:var(--purple); font-weight:600; text-shadow:var(--purple-glow);}
 .status-dot{
   width:7px; height:7px; border-radius:50%;
   background:var(--cyan); flex:none;
@@ -135,7 +136,7 @@ h1{
   max-width:14ch;
   text-transform:uppercase;
 }
-h1 .accent{color:var(--purple);}
+h1 .accent{color:var(--purple); text-shadow:var(--purple-glow);}
 .hero-boot{ display:inline-block; }
 @media(min-width:640px){
   .hero-boot{
@@ -191,7 +192,7 @@ section:last-of-type{border-bottom:none;}
   font-size:11px; letter-spacing:0.1em; color:var(--text-faint);
   display:flex; align-items:center; gap:10px; margin-bottom:14px;
 }
-.sec-tag .chan{color:var(--purple);}
+.sec-tag .chan{color:var(--purple); text-shadow:var(--purple-glow);}
 h2{
   font-family:var(--disp); font-weight:700; font-size:24px;
   text-transform:uppercase; letter-spacing:0.01em; margin:0;
@@ -268,9 +269,31 @@ h2{
 .log{font-size:13px; line-height:2;}
 .log .row{display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--seam);}
 .log .row:last-child{border-bottom:none;}
-.log .prompt{color:var(--purple); flex:none;}
+.log .prompt{color:var(--purple); flex:none; text-shadow:var(--purple-glow);}
 .log .row b{color:var(--text); font-weight:600;}
 .log .row span{color:var(--text-dim);}
+
+/* ---- lexicon / glossary ---- */
+.gloss{border-top:1px solid var(--seam-2);}
+.gloss-row{
+  display:grid; grid-template-columns:210px 1fr; gap:24px;
+  padding:20px 0; border-bottom:1px solid var(--seam);
+}
+.gloss-row:last-child{border-bottom:none;}
+.gloss-term{
+  font-family:var(--disp); font-weight:700; font-size:13.5px;
+  color:var(--purple); letter-spacing:0.04em; text-transform:uppercase;
+  text-shadow:var(--purple-glow);
+  align-self:start; padding-top:1px;
+}
+.gloss-term .plain{
+  display:block; font-family:var(--mono); font-weight:400; font-size:11px;
+  color:var(--text-faint); letter-spacing:0.02em; text-transform:none; margin-top:5px;
+}
+.gloss-def{font-size:13.5px; color:var(--text-dim); line-height:1.75;}
+@media(max-width:700px){
+  .gloss-row{grid-template-columns:1fr; gap:8px;}
+}
 
 /* ---- footer ---- */
 footer{padding:44px 0; text-align:center;}
@@ -305,8 +328,9 @@ footer p{font-size:12.5px; color:var(--text-faint);}
     <div class="status-dot" title="generator online"></div>
     <div class="nav-links">
       <a href="#generator"><i>CH.01</i>GENERATOR</a>
-      <a href="#builds"><i>CH.02</i>BUILDS</a>
-      <a href="#spec"><i>CH.03</i>SPEC</a>
+      <a href="#lexicon"><i>CH.02</i>LEXICON</a>
+      <a href="#builds"><i>CH.03</i>BUILDS</a>
+      <a href="#spec"><i>CH.04</i>SPEC</a>
     </div>
   </div>
 </nav>
@@ -369,10 +393,133 @@ footer p{font-size:12.5px; color:var(--text-faint);}
   </div>
 </section>
 
+<section id="lexicon">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag"><span class="chan">CH.02</span>&nbsp;/&nbsp;LEXICON</div>
+      <h2>Every term on this page, explained simply</h2>
+      <p class="sec-sub">Written so it makes sense even if you've never touched AI tools before &mdash; no jargon left unexplained.</p>
+    </div>
+    <div class="gloss">
+
+      <div class="gloss-row">
+        <div class="gloss-term">Parameters<span class="plain">e.g. "7B"</span></div>
+        <div class="gloss-def">Think of the AI as a giant machine with billions of tiny dials inside it. Each "parameter" is one dial, and training the AI is the process of turning all those dials to the right position. "7B" means 7 billion dials. More dials usually means the AI can understand and draw more complex things, but it also means a bigger file to download and more computer power needed to run it.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">RGBA / Alpha Channel</div>
+        <div class="gloss-def">Every pixel in a normal photo is made of Red, Green, and Blue light mixed together &mdash; that's "RGB". The "A" stands for Alpha, which is a fourth piece of information that says how see-through each pixel is. A PNG sticker with a transparent background (no white box around it) uses alpha. This model can generate images with that transparency built in, automatically.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Diffusion Model</div>
+        <div class="gloss-def">A type of AI that creates images by starting with random TV-static-like noise, then slowly "cleaning it up" step by step until a real picture appears &mdash; kind of like how a sculptor starts with a rough block of stone and gradually removes bits until a statue appears.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">DiT Layers<span class="plain">Diffusion Transformer layers</span></div>
+        <div class="gloss-def">The 32 separate "stages" the noisy image passes through on its way to becoming a finished picture. Each stage refines the image a little more &mdash; like an assembly line where every station adds one more improvement.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Attention<span class="plain">"mixed-granularity attention"</span></div>
+        <div class="gloss-def">This is how the AI decides what to focus on. If your prompt says "a red cat on a blue couch," attention is the mechanism that helps the AI connect the word "red" to the cat and not the couch. "Mixed-granularity" just means it can focus on both big-picture details and tiny fine details at the same time.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">KV Cache<span class="plain">"prefix KV cache reuse"</span></div>
+        <div class="gloss-def">A memory shortcut. Instead of re-doing calculations it already finished, the AI saves ("caches") that work and reuses it. This is especially helpful when you give it multiple reference images, since it doesn't have to re-analyze the same image twice &mdash; it just makes things faster.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Reference Images</div>
+        <div class="gloss-def">Photos you upload to show the AI what you want it to copy, combine, or edit &mdash; for example, "put the shirt from image 1 on the person in image 2." This model can take up to 10 of these at once.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Prompt</div>
+        <div class="gloss-def">The text instructions you type to tell the AI what to make, like typing a search into Google, except here you're describing a picture instead of searching for a webpage.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Checkpoint</div>
+        <div class="gloss-def">A saved, downloadable copy of the AI's fully-trained "brain" &mdash; basically the file you download that contains all those billions of dials already set correctly. Different checkpoints on this page are the same brain, just repackaged for different computers.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Diffusers</div>
+        <div class="gloss-def">A free toolkit (made by Hugging Face) that programmers use to run AI image models with a small amount of Python code, instead of building everything from scratch.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">ComfyUI</div>
+        <div class="gloss-def">A program with drag-and-drop boxes and wires (like a flowchart) that lets you run AI image models by connecting pieces visually, without writing any code at all.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">GGUF</div>
+        <div class="gloss-def">A file format designed to shrink AI models down and make them run on regular laptops (using llama.cpp software), instead of needing an expensive data-center graphics card.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Quantization<span class="plain">Q2_K, Q4_K_M, Q6_K, Q8_0, INT4</span></div>
+        <div class="gloss-def">A way of compressing an AI model by making its internal numbers less precise &mdash; similar to saving a photo as a smaller JPEG instead of a huge raw file. "Q8" keeps almost all the quality; "Q2" is much smaller but a bit blurrier in its results. It's a trade-off between file size and quality.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">VRAM</div>
+        <div class="gloss-def">The memory built into your graphics card (GPU), separate from your computer's regular RAM. AI models need to fully fit inside this memory to run &mdash; if your graphics card only has 8GB of VRAM, you need a version of the model small enough to fit in that space.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">BF16</div>
+        <div class="gloss-def">A specific way of storing the AI's numbers using 16 bits each &mdash; a middle ground that's smaller than the highest-quality format but still very accurate. Most "official" checkpoints are released in this format.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">MLX</div>
+        <div class="gloss-def">A toolkit made by Apple that lets AI models run efficiently on Mac computers with M-series chips (M1, M2, M3, etc.), instead of needing an Nvidia graphics card.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Distillation / Turbo<span class="plain">"DMD", 4-step inference</span></div>
+        <div class="gloss-def">Normally, generating an image takes dozens of small refining steps. A "turbo" or "distilled" model has been specially trained by a slower "teacher" model to get a similar-quality result in far fewer steps (like 4 instead of 40) &mdash; trading a little quality for a lot of speed.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Steps<span class="plain">e.g. "40 steps"</span></div>
+        <div class="gloss-def">How many times the AI refines the noisy image before calling it finished. More steps generally means more detail, but takes longer; fewer steps is faster but can look rougher.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Resolution<span class="plain">e.g. "2048px"</span></div>
+        <div class="gloss-def">How many tiny colored dots (pixels) make up the image, measured in width and height. 2048px means the image is 2048 dots wide &mdash; more pixels means a sharper, more detailed picture when you zoom in.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">License<span class="plain">"Qwen Research License"</span></div>
+        <div class="gloss-def">The legal rulebook that says who's allowed to use this AI model and for what. Some licenses only allow personal or research use and restrict selling products made with the AI &mdash; always worth reading before using something commercially.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">Space<span class="plain">Hugging Face Space</span></div>
+        <div class="gloss-def">A free mini-website, hosted by Hugging Face, where you can try out an AI model directly in your browser &mdash; no downloading, no installing, no account required most of the time. The generator embedded above on this page is exactly this.</div>
+      </div>
+
+      <div class="gloss-row">
+        <div class="gloss-term">GPU<span class="plain">Graphics Processing Unit</span></div>
+        <div class="gloss-def">A special computer chip originally built for rendering video game graphics, which also happens to be extremely good at the kind of math AI models need. Most AI generation runs on a GPU rather than a regular processor (CPU) because it's dramatically faster at this specific job.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="builds">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag"><span class="chan">CH.02</span>&nbsp;/&nbsp;ALTERNATE BUILDS</div>
+      <div class="sec-tag"><span class="chan">CH.03</span>&nbsp;/&nbsp;ALTERNATE BUILDS</div>
       <h2>Run it on your own hardware</h2>
       <p class="sec-sub">Same weights, different packaging &mdash; matched to what you have available.</p>
     </div>
@@ -425,7 +572,7 @@ footer p{font-size:12.5px; color:var(--text-faint);}
 <section id="spec">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag"><span class="chan">CH.03</span>&nbsp;/&nbsp;UNIT SPECIFICATION</div>
+      <div class="sec-tag"><span class="chan">CH.04</span>&nbsp;/&nbsp;UNIT SPECIFICATION</div>
       <h2>What's inside</h2>
     </div>
     <div class="log">
@@ -438,6 +585,8 @@ footer p{font-size:12.5px; color:var(--text-faint);}
     </div>
   </div>
 </section>
+
+
 
 <footer>
   <div class="wrap">
